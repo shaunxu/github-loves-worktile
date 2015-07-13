@@ -5,18 +5,26 @@
     <title>Github &hearts;s Worktile</title>
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="bower_components/bootstrap-material-design/dist/css/roboto.css" rel="stylesheet">
     <link href="bower_components/bootstrap-material-design/dist/css/material-fullpalette.css" rel="stylesheet">
     <link href="bower_components/bootstrap-material-design/dist/css/ripples.css" rel="stylesheet">
 
     <link href="styles/site.css" rel="stylesheet">
 </head>
-<body>
+<body ng-app="GithubLovesWorktile">
     <div class="header-panel shadow-z-2">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-6">
                     <h1>Github <span class="glyphicon glyphicon-heart"></span>s Worktile</h1>
+                </div>
+                <div class="col-xs-5"></div>
+                <div class="col-xs-1 text-center">
+                    <div class="account-panel" ng-controller="AccountController">
+                        <img class="avatar" src="res/shaunxu.jpg" alt="{{name}}">
+                        <!--<i class="fa fa-user fa-5x"></i>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +71,6 @@
     <script src="bower_components/angular/angular.js"></script>
 
     <script src="app.js"></script>
-
+    <script src="scripts/account-controller.js"></script>
 </body>
 </html>

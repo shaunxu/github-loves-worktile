@@ -104,3 +104,13 @@
 .main {
     margin-top: 144px;
 }
+
+.header-panel .account-panel {
+    padding: 25px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
