@@ -4,8 +4,11 @@
 .header-panel {
     background-color: #009587;
     height: 144px;
-    position: relative;
-    z-index: 3;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1030;
 }
 .header-panel div {
     position: relative;
@@ -50,7 +53,7 @@
 }
 
 .pages {
-    padding: 0;
+    padding: 20px;
     overflow: auto;
 }
 .pages > div {
@@ -92,4 +95,12 @@
 
 #source-modal h4 {
     color: black;
+}
+
+.clear {
+    clear: both;
+}
+
+.main {
+    margin-top: 144px;
 }
