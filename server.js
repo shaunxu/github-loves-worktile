@@ -68,7 +68,10 @@
     // static file serve
     app.use(express.static(__dirname + '/app'));
 
+    // launch api
+    require('./api').initialize(app, logger);
+    
     app.listen(argv['port']);
     logger.info('http://0.0.0.0:' + argv['port'] + '/');
-    process.title = 'Github Loves Worktile';
+    process.title = 'Github Loves Worktile - Server';
 })();

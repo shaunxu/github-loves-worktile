@@ -1,19 +1,37 @@
 (function () {
     'use strict';
 
-    window.app = window.angular.module('GithubLovesWorktile', ['ui.router', 'ngWorktile']);
+    window.app = window.angular.module('GithubLovesWorktile', ['ui.router']);
 
     window.app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true);
+        $urlRouterProvider.otherwise('/about');
 
         $stateProvider
-            .state('authorizing', {
-                url: "/authorizing",
-                templateUrl: "modules/security/authorizing.html"
+            .state('signin', {
+                abstract: true,
+                url: '/signin',
+                templateUrl: 'modules/security/signin.html',
+            })
+            .state('signin.github', {
+                url: '/github',
+                templateUrl: 'modules/security/signin-github.html',
+                controller: 'SignInGithubController'
+            })
+            .state('signin.worktile', {
+                url: '/worktile',
+                templateUrl: 'modules/security/signin-worktile.html',
+                controller: 'SignInWorktileController'
+            })
+            .state('signin.complete', {
+                url: '/complete',
+                templateUrl: 'modules/security/signin-complete.html',
+                controller: 'SignInCompleteController'
+            })
+            .state('about', {
+                url: '/about',
+                templateUrl: 'modules/misc/about.html',
+                controller: 'AboutController'
             });
-    });
-
-    window.app.run(function ($worktile) {
-        $worktile.clientId('54599295762c424b8aced6e7ee891a47');
     });
 })();

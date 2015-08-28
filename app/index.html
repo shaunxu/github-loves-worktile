@@ -15,68 +15,59 @@
     <link href="styles/site.css" rel="stylesheet">
 </head>
 <body ng-app="GithubLovesWorktile">
-    <div class="header-panel shadow-z-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-6">
-                    <h1>Github <span class="glyphicon glyphicon-heart"></span>s Worktile</h1>
-                </div>
-                <div class="col-xs-5"></div>
-                <div class="col-xs-1 text-center">
-                    <div class="account-panel" ng-controller="AccountController">
-                        <img ng-show="isLoggedIn()" class="avatar" src="res/ic_face_black_48dp_1x.png" alt="{{name}}">
-                        <i ng-hide="isLoggedIn()" class="fa fa-user fa-5x" style="cursor: pointer;" title="Login" ng-click="login()"></i>
-                    </div>
-                </div>
-            </div>
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)">Github <i class="fa fa-heart"></i>s Worktile</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul ng-show="true" class="nav navbar-nav">
+                <li><a href="javascript:void(0)">Menu 1</a></li>
+                <li><a href="javascript:void(0)">Menu 2</a></li>
+                <li><a href="javascript:void(0)">Menu 3</a></li>
+                <li><a href="javascript:void(0)">Menu 4</a></li>
+                <li><a ui-sref="about">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-show="true"><a ui-sref="signin.github">Sign In</a></li>
+<!--
+                <li class="dropdown">
+                    <a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">Action</a></li>
+                        <li><a href="javascript:void(0)">Another action</a></li>
+                        <li><a href="javascript:void(0)">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">Separated link</a></li>
+                    </ul>
+                </li>
+-->
+            </ul>
         </div>
     </div>
 
-    <div class="container-fluid main">
-        <div class="row">
-            <nav class="col-xs-3 menu">
-                <ul>
-                    <li class="withripple active" data-target="#about">Material Design for Bootstrap<div class="ripple-wrapper"></div></li>
-                    <li class="withripple" data-target="#getting-started">Getting Started<div class="ripple-wrapper"></div></li>
-                    <li><a href="http://fezvrasta.github.com/bootstrap-material-design/bootstrap-elements.html" target="_blank">Bootstrap elements <i class="mdi-action-open-in-new"></i></a></li>
-                    <li class="withripple" data-target="#material-colors">Material Colors<div class="ripple-wrapper"></div></li>
-                    <li class="withripple" data-target="#checkbox">Checkbox<div class="ripple-wrapper"></div></li>
-                    <li class="withripple" data-target="#radio-button">Radio Button</li>
-                    <li class="withripple" data-target="#toggle-button">Toggle Button</li>
-                    <li class="withripple" data-target="#input">Input</li>
-                    <li class="withripple" data-target="#navbar">Navbar</li>
-                    <li class="withripple" data-target="#progress-bar">Progress Bar</li>
-                    <li class="withripple" data-target="#slider">Slider</li>
-                    <li class="withripple">Tabs (To do)</li>
-                    <li class="withripple" data-target="#button">Button</li>
-                    <li class="withripple">Icon button (To do)</li>
-                    <li class="withripple" data-target="#floating-action-button">Floating Action Button</li>
-                    <li class="withripple" data-target="#dropdown">Dropdown (Work in progress)</li>
-                    <li class="withripple" data-target="#dropdown-menu">Dropdown Menu</li>
-                    <li class="withripple" data-target="#dialog">Dialog</li>
-                    <li class="withripple" data-target="#shadow">Shadow</li>
-                </ul>
-            </nav>
-            <div class="pages col-xs-9">
-                <div ui-view></div>
-            </div>
-        </div>
+    <div ui-view>
     </div>
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
-    <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
-    <script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" >
         $.material.init();
     </script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
-    <script src="lib/worktile.js"></script>
-    <script src="app.js"></script>
-    <script src="modules/security/authorizing.js"></script>
-    <script src="modules/security/account.js"></script>
-    <script src="modules/security/security.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="lib/api.js"></script>
+    <script type="text/javascript" src="modules/security/signin.js"></script>
+    <script type="text/javascript" src="modules/misc/about.js"></script>
 </body>
 </html>
