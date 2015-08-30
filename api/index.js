@@ -3,9 +3,9 @@
 
     exports.initialize = function (app, logger) {
         var _validate = function (controller, req, callback) {
-            var validator = controller['validate'];
+            var validator = controller.validate;
             if (validator) {
-                validator(params, function (error) {
+                validator(req, function (error) {
                     return callback(error);
                 });
             }
@@ -19,7 +19,7 @@
                 moduleName: moduleName,
                 controllerName: controllerName,
                 actionName: actionName,
-                params: params,
+                params: params
             };
             if (error) {
                 message.error = error;
@@ -58,16 +58,16 @@
             req.body = req.body || {};
             _validate(controller, req, function (error) {
                 if (error) {
-                    return _logAndSendErrorOrResult(moduleName, controllerName, actionName, params, error, null, res);
+                    return _logAndSendErrorOrResult(moduleName, controllerName, actionName, req.body, error, null, res);
                 }
                 else {
                     controller[actionName](req, res, function (error, result) {
                         if (error) {
-                            return _logAndSendErrorOrResult(moduleName, controllerName, actionName, params, error, null, res);
+                            return _logAndSendErrorOrResult(moduleName, controllerName, actionName, req.body, error, null, res);
                         }
                         else {
                             result = result || {};
-                            return _logAndSendErrorOrResult(moduleName, controllerName, actionName, params, null, result, res);
+                            return _logAndSendErrorOrResult(moduleName, controllerName, actionName, req.body, null, result, res);
                         }
                     });
                 }
