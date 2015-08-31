@@ -1,1 +1,80 @@
-<h1>{{name}}</h1>
+<div class="signup-box shadow-z-2">
+    <h2>Sign Up</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">GitHub</h3>
+                    <div class="pull-right">
+                        <img class="avatar shadow-z-2" ng-src="{{github.avatar}}">
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal" style="margin-right: 100px;">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">ID</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" disabled ng-model="github.id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Login</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" disabled ng-model="github.username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" disabled ng-model="github.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button type="button" class="btn btn-primary" ng-click="connect_github()">Integrate with GitHub</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Worktile</h3>
+                    <div class="pull-right">
+                        <img class="avatar shadow-z-2" ng-src="{{worktile.avatar}}">
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal" style="margin-right: 100px;">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">ID</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" disabled ng-model="worktile.id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Login</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" disabled ng-model="worktile.username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Email</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" disabled ng-model="worktile.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button type="button" class="btn btn-primary" ng-click="connect_worktile()">Integrate with Worktile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

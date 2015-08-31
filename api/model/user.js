@@ -12,13 +12,16 @@
             github_username: { type: String },
             github_email: { type: String },
             github_avatar: { type: String },
+            github_display_name: { type: String },
 
             worktile_token: { type: String },
             worktile_token_expired_on: { type: String },
             worktile_token_refresh: { type: String },
+            worktile_id: { type: String },
             worktile_username: { type: String },
             worktile_email: { type: String },
             worktile_avatar: { type: String },
+            worktile_display_name: { type: String },
 
             display_name: { type: String },
             avatar: { type: String },
@@ -46,6 +49,7 @@
                         model.github_username = user.data.login;
                         model.github_email = user.data.email;
                         model.github_avatar = user.data.avatar_url;
+                        model.github_display_name = user.data.name;
 
                         model.save(function (error, result) {
                             if (error) {
