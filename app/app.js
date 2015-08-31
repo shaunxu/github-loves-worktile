@@ -11,7 +11,7 @@
             .state('signin', {
                 abstract: true,
                 url: '/signin',
-                templateUrl: 'modules/security/signin.html',
+                templateUrl: 'modules/security/signin.html'
             })
             .state('signin.github', {
                 url: '/github',
