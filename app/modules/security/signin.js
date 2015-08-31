@@ -9,15 +9,25 @@
                     alert(window.angular.toJson(error, true));
                 }
                 else {
-                    alert(url);
                     $window.location = url;
                 }
             });
         };
     });
 
-    app.controller('SignInWorktileController', function ($scope) {
+    app.controller('SignInWorktileController', function ($scope, $window, $api) {
         $scope.name = 'Sign In - Worktile';
+
+        $scope.integrate = function () {
+            $api.request('integration', 'worktile', 'getAuthorizeUrl', null, function (error, url) {
+                if (error) {
+                    alert(window.angular.toJson(error, true));
+                }
+                else {
+                    $window.location = url;
+                }
+            });
+        };
     });
 
     app.controller('SignInCompleteController', function ($scope) {

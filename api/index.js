@@ -2,6 +2,17 @@
     'use strict';
 
     exports.initialize = function (app, logger) {
+        var model = require('./model')('mongodb://localhost/local', logger, function (error) {
+            if (error) {
+                logger.error('MongoDB connection failed.');
+                logger.error(error);
+            }
+            else {
+                logger.info('MongoDB connected.');
+                logger.info('API launched.');
+            }
+        });
+
         var _validate = function (controller, req, callback) {
             var validator = controller.validate;
             if (validator) {
@@ -47,7 +58,7 @@
             var controllerName = segments[2];
             var actionName = segments[3];
 
-            var controller = require('./' + moduleName + '/' + controllerName + '.js')(logger);
+            var controller = require('./' + moduleName + '/' + controllerName + '.js')(logger, model);
             if (!controller) {
                 return _logAndSendErrorOrResult(moduleName, controllerName, null, null, 'Cannot find controller [' + moduleName + '.' + controllerName + '] from request path [' + req.path + ']', null, res);
             }
@@ -73,8 +84,6 @@
                 }
             });
         });
-
-        logger.info('API launched.');
     };
 
 })();
