@@ -9,6 +9,7 @@
                     alert(window.angular.toJson(error, true));
                 }
                 else {
+                    alert(url);
                     $window.location = url;
                 }
             });

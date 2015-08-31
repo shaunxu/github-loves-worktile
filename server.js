@@ -10,19 +10,19 @@
 
     var log4js = require('log4js');
     var logger = log4js.getLogger('MYDOCDB');
-    if (argv['debug'] === true) {
+    if (argv.debug === true) {
         logger.setLevel('DEBUG');
     }
     else {
         logger.setLevel('INFO');
     }
 
-    logger.debug('config - port: ' + argv['port']);
-    logger.debug('config - debug: ' + argv['debug']);
-    logger.debug('config - proxy: ' + argv['proxy']);
+    logger.debug('config - port: ' + argv.port);
+    logger.debug('config - debug: ' + argv.debug);
+    logger.debug('config - proxy: ' + argv.proxy);
 
-    if (argv['proxy']) {
-        var array = argv['proxy'].split(':');
+    if (argv.proxy) {
+        var array = argv.proxy.split(':');
         if (array.length === 2) {
             var host = array[0];
             var port = array[1];
