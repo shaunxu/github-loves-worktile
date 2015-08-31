@@ -9,25 +9,30 @@
 
         $stateProvider
             .state('signin', {
-                abstract: true,
                 url: '/signin',
-                templateUrl: 'modules/security/signin.html'
+                templateUrl: 'modules/security/signin.html',
+                controller: 'SignInController'
             })
-            .state('signin.github', {
-                url: '/github',
-                templateUrl: 'modules/security/signin-github.html',
-                controller: 'SignInGithubController'
+            .state('signup', {
+                url: '/signup',
+                templateUrl: 'modules/security/signup.html',
+                controller: 'SignUpController'
             })
-            .state('signin.worktile', {
-                url: '/worktile',
-                templateUrl: 'modules/security/signin-worktile.html',
-                controller: 'SignInWorktileController'
-            })
-            .state('signin.complete', {
-                url: '/complete',
-                templateUrl: 'modules/security/signin-complete.html',
-                controller: 'SignInCompleteController'
-            })
+            //.state('signin.github', {
+            //    url: '/github',
+            //    templateUrl: 'modules/security/signin-github.html',
+            //    controller: 'SignInGithubController'
+            //})
+            //.state('signin.worktile', {
+            //    url: '/worktile',
+            //    templateUrl: 'modules/security/signin-worktile.html',
+            //    controller: 'SignInWorktileController'
+            //})
+            //.state('signin.complete', {
+            //    url: '/complete',
+            //    templateUrl: 'modules/security/signin-complete.html',
+            //    controller: 'SignInCompleteController'
+            //})
             .state('about', {
                 url: '/about',
                 templateUrl: 'modules/misc/about.html',

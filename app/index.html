@@ -26,14 +26,14 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul ng-show="true" class="nav navbar-nav">
-                <li><a ui-sref="signin.github">GitHub</a></li>
-                <li><a ui-sref="signin.worktile">Worktile</a></li>
+                <li><a ui-sref="signin">Sign In</a></li>
+                <li><a ui-sref="signup">Sign Up</a></li>
                 <li><a href="javascript:void(0)">Menu 3</a></li>
                 <li><a href="javascript:void(0)">Menu 4</a></li>
                 <li><a ui-sref="about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="true"><a ui-sref="signin.github">Sign In</a></li>
+                <li ng-show="true"><a ui-sref="signin">Sign In</a></li>
 <!--
                 <li class="dropdown">
                     <a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -57,6 +57,7 @@
 
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/arrive/src/arrive.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
@@ -68,6 +69,7 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="lib/api.js"></script>
     <script type="text/javascript" src="modules/security/signin.js"></script>
+    <script type="text/javascript" src="modules/security/signup.js"></script>
     <script type="text/javascript" src="modules/misc/about.js"></script>
 </body>
 </html>

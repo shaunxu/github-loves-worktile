@@ -23,6 +23,7 @@
     "bootstrap-material-design": "~0.3.0",
     "bootstrap": "~3.3.5",
     "font-awesome": "~4.3.0",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "arrive": "~2.2.0"
   }
 }

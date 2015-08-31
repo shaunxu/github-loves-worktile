@@ -114,3 +114,12 @@
     height: 55px;
     border-radius: 50%;
 }
+
+.signin-box {
+    margin: 25px 400px 0 400px;
+    padding: 50px;
+}
+
+.input-section {
+    margin: 40px 0;
+}
