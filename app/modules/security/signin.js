@@ -1,13 +1,21 @@
 (function (app) {
     'use strict';
 
-    app.controller('SignInController', function ($scope, $api) {
-        $scope.githubUsername = '';
-        $scope.worktileUsername = '';
-        $scope.sameUsername = true;
+    app.controller('SignInController', function ($scope, $window, $api) {
+        $scope.signin = function (event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
 
-        $scope.signin = function () {
-
+            $api.request('integration', 'worktile', 'getAuthorizeUrl', null, function (error, url) {
+                if (error) {
+                    alert(window.angular.toJson(error, true));
+                }
+                else {
+                    $window.location = url;
+                }
+            });
         };
     });
 

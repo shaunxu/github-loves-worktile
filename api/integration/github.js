@@ -14,7 +14,7 @@
             getAuthorizeUrl: function (req, res, callback) {
                 var qs = querystring.stringify({
                     client_id: '582b096f33b699321fb1',
-                    redirect_uri: 'http://localhost:22222/api/integration/github/callback',
+                    redirect_uri: 'http://glw.local/api/integration/github/callback',
                     scope: 'user:email,admin:repo_hook',
                     state: ''
                 });
@@ -35,8 +35,7 @@
                         qs: {
                             client_id: '582b096f33b699321fb1',
                             client_secret: '4e28fd015367e6cc613dbc466827303860cd4ab9',
-                            code: code,
-                            redirect_uri: 'http://localhost:22222/api/integration/github/callback'
+                            code: code
                         }
                     };
                     request(options, function (error, response, body) {
@@ -54,11 +53,11 @@
                                         token: token,
                                         data: data
                                     };
-                                    model.user.set_github(user);
+                                    // todo: add github account
+                                    
                                     return callback(null, user);
                                 }
                             });
-
                         }
                     });
                 }
@@ -76,10 +75,19 @@
                         'Authorization': 'token ' + token
                     },
                     qs: qs,
-                    json: true,
-                    body: data
+                    json: method !== 'GET',
+                    body: method === 'GET' ? null : data
                 };
+                logger.debug('GitHub API: Request\n' + JSON.stringify(options, null, 2));
                 request(options, function (error, response, body) {
+                    body = _.isString(body) ? JSON.parse(body) : body;
+                    error = error || (response.statusCode >= 400 ? (body || response.statusCode) : null);
+
+                    logger.debug('GitHub API: Response\n' + JSON.stringify({
+                            error: error,
+                            response: response,
+                            body: body
+                        }, null, 2));
                     if (error) {
                         return callback(error, null);
                     }

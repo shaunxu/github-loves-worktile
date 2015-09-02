@@ -8,11 +8,11 @@
         $urlRouterProvider.otherwise('/about');
 
         $stateProvider
-            .state('signin', {
-                url: '/signin',
-                templateUrl: 'modules/security/signin.html',
-                controller: 'SignInController'
-            })
+            //.state('signin', {
+            //    url: '/signin',
+            //    templateUrl: 'modules/security/signin.html',
+            //    controller: 'SignInController'
+            //})
             .state('signup', {
                 url: '/signup',
                 templateUrl: 'modules/security/signup.html',
