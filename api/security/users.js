@@ -13,7 +13,9 @@
             getUserByToken: function (req, res, callback) {
                 var token = req.body.token;
                 if (token) {
-                    
+                    model.user.get(token, function (error, user) {
+                        return callback(error, user);
+                    });
                 }
                 else {
                     return callback('No token specified.', null);

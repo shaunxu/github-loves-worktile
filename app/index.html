@@ -38,14 +38,11 @@
                 </li>
                 <li class="dropdown" ng-show="me">
                     <a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img ng-src="{{me.avatar}}"> <b class="caret"></b>
+                        <img class="avatar" ng-src="{{me.avatar}}" title="{{me.display_name}}">
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">Action</a></li>
-                        <li><a href="javascript:void(0)">Another action</a></li>
-                        <li><a href="javascript:void(0)">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="javascript:void(0)">Separated link</a></li>
+                        <li><a ui-sref="profile">Edit Profile</a></li>
+                        <li><a href="javascript:void(0)" ng-click="signout($event)">Sign Out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -69,6 +66,7 @@
 
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="lib/api.js"></script>
+    <script type="text/javascript" src="lib/storage.js"></script>
     <script type="text/javascript" src="modules/security/signin.js"></script>
     <script type="text/javascript" src="modules/security/signup.js"></script>
     <script type="text/javascript" src="modules/misc/about.js"></script>
