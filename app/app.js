@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    window.app = window.angular.module('GithubLovesWorktile', ['ui.router']);
+    window.app = window.angular.module('GithubLovesWorktile', ['ui.router', 'ngCookies']);
 
     window.app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true);

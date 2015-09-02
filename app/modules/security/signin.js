@@ -1,7 +1,27 @@
 (function (app) {
     'use strict';
 
-    app.controller('SignInController', function ($scope, $window, $api) {
+    app.controller('SignInController', function ($scope, $window, $cookies, $api) {
+        var token = $cookies.get('__token');
+        if (token) {
+
+        }
+
+        //$scope.me = $cookies.getAll();
+        //if ($scope.me &&
+        //    $scope.me.hasOwnProperty('__token') &&
+        //    $scope.me.hasOwnProperty('__display_name') &&
+        //    $scope.me.hasOwnProperty('__avatar')) {
+        //
+        //    $window.sessionStorage.setItem('__me', window.angular.toJson($scope.me));
+        //    window.angular.forEach(Object.keys(cookies), function (key) {
+        //        $cookies.remove(key);
+        //    });
+        //}
+        //else {
+        //    $scope.me = null;
+        //}
+
         $scope.signin = function (event) {
             if (event) {
                 event.preventDefault();

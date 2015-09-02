@@ -69,6 +69,11 @@
                         });
                     }
                 });
+            },
+            get: function (token, callback) {
+                UserModel.findOne({ token: token }, function (error, model) {
+                    return callback(error, model);
+                });
             }
             //set_github: function (user, callback) {
             //    UserModel.findOne({ github_id: user.data.id }, function (error, model) {

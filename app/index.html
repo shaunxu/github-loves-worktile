@@ -32,14 +32,13 @@
                 <li><a href="javascript:void(0)">Menu 4</a></li>
                 <li><a ui-sref="about">About</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-show="true" ng-controller="SignInController">
+            <ul class="nav navbar-nav navbar-right" ng-controller="SignInController">
+                <li ng-hide="me">
                     <a href="javascript:void(0)" ng-click="signin($event)">Sign In</a>
                 </li>
-<!--
-                <li class="dropdown">
+                <li class="dropdown" ng-show="me">
                     <a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-user"></i> <b class="caret"></b>
+                        <img ng-src="{{me.avatar}}"> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0)">Action</a></li>
@@ -49,7 +48,6 @@
                         <li><a href="javascript:void(0)">Separated link</a></li>
                     </ul>
                 </li>
--->
             </ul>
         </div>
     </div>
@@ -63,6 +61,7 @@
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script type="text/javascript" >
         $.material.init();

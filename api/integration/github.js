@@ -54,7 +54,7 @@
                                         data: data
                                     };
                                     // todo: add github account
-                                    
+
                                     return callback(null, user);
                                 }
                             });

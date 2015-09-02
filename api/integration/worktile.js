@@ -58,7 +58,8 @@
                                             return callback(error, null);
                                         }
                                         else {
-                                            return callback(null, result);
+                                            res.cookie('__token', result.token);
+                                            res.redirect('/');
                                         }
                                     });
                                 }
