@@ -25,6 +25,7 @@
     "font-awesome": "~4.3.0",
     "angular-ui-router": "~0.2.15",
     "arrive": "~2.2.0",
-    "angular-cookies": "~1.4.5"
+    "angular-cookies": "~1.4.5",
+    "angular-bootstrap": "~0.13.4"
   }
 }

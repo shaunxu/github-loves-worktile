@@ -10,7 +10,7 @@
             <th>Login</th>
             <th>Email</th>
             <th>Scope</th>
-            <th colspan="2" width="10%"></th> <!-- refresh, revoke -->
+            <th colspan="3" width="15%"></th> <!-- triggers, review, revoke -->
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,10 @@
             <td>{{connection.email}}</td>
             <td>{{connection.token_scope}}</td>
             <td>
-                <a ng-href="{{reviewUrl}}" class="btn btn-info btn-xs btn-in-table">Review</a>
+                <a ui-sref="triggers.list({ cid: connection.id })" class="btn btn-primary btn-xs btn-in-table">Triggers</a>
+            </td>
+            <td>
+                <a ng-href="{{reviewUrl}}" class="btn btn-primary btn-xs btn-in-table">Review</a>
             </td>
             <td>
                 <a href="javascript:void(0)" class="btn btn-danger btn-xs btn-in-table" ng-click="revoke($event, connection.id)">Revoke</a>

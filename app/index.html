@@ -27,7 +27,7 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul ng-show="true" class="nav navbar-nav">
                 <li><a ui-sref="connections.list">Connections</a></li>
-                <li><a href="javascript:void(0)">Triggers</a></li>
+                <li><a ui-sref="triggers.list">Triggers</a></li>
                 <li><a href="javascript:void(0)">Status</a></li>
                 <li><a ui-sref="about">About</a></li>
             </ul>
@@ -59,9 +59,13 @@
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" >
         $.material.init();
     </script>
+
+    <script type="text/javascript" src="lib/sx.wizard/sx-wizard-tpls.js"></script>
+    <script type="text/javascript" src="lib/sx.wizard/sx-wizard.js"></script>
 
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="lib/api.js"></script>
@@ -70,5 +74,10 @@
     <script type="text/javascript" src="modules/security/signup.js"></script>
     <script type="text/javascript" src="modules/misc/about.js"></script>
     <script type="text/javascript" src="modules/connection/connection.js"></script>
+    <script type="text/javascript" src="modules/triggers/triggers.js"></script>
+    <script type="text/javascript" src="modules/triggers/steps/ws-select-repo.js"></script>
+    <script type="text/javascript" src="modules/triggers/steps/ws-select-event.js"></script>
+    <script type="text/javascript" src="modules/triggers/steps/ws-select-action.js"></script>
+    <script type="text/javascript" src="modules/triggers/steps/ws-complete.js"></script>
 </body>
 </html>

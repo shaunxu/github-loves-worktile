@@ -1,7 +1,12 @@
 (function () {
     'use strict';
 
-    window.app = window.angular.module('GithubLovesWorktile', ['ui.router', 'ngCookies']);
+    window.app = window.angular.module('GithubLovesWorktile', [
+        'ui.router',
+        'ngCookies',
+        'ui.bootstrap',
+        'sx.wizard'
+    ]);
 
     window.app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true);
@@ -27,6 +32,16 @@
                 url: '/all?highlight',
                 templateUrl: 'modules/connection/connection-list.html',
                 controller: 'ConnectionListController'
+            })
+            .state('triggers', {
+                abstract: true,
+                url: '/triggers',
+                templateUrl: 'modules/triggers/triggers.html'
+            })
+            .state('triggers.list', {
+                url: '/all?cid',
+                templateUrl: 'modules/triggers/triggers-list.html',
+                controller: 'TriggerListController'
             })
             //.state('signin.github', {
             //    url: '/github',
