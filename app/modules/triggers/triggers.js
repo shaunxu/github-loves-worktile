@@ -10,6 +10,12 @@
                 title: 'Create a new trigger'
             })
             .addStep({
+                id: 'select-account',
+                title: 'Select a GitHub connection',
+                templateUrl: 'modules/triggers/steps/ws-select-owner.html',
+                controller: 'wsSelectOwnerController'
+            })
+            .addStep({
                 id: 'select-repo',
                 title: 'Select a repository',
                 templateUrl: 'modules/triggers/steps/ws-select-repo.html',
@@ -42,6 +48,8 @@
 
             wizard.open({}, function (result) {
                 alert(angular.toJson(result, true));
+
+                $state.reload('triggers.list');
             }, window.angular.noop);
         };
     });
