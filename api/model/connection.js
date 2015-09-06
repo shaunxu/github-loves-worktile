@@ -53,8 +53,8 @@
                 });
             },
             getById: function (uid, id, callback) {
-                ConnectionModel.find({ uid: uid, id: id }, function (error, connections) {
-                    return callback(error, connections);
+                ConnectionModel.findOne({ uid: uid, id: id }, function (error, connection) {
+                    return callback(error, connection);
                 });
             },
             remove: function (id, callback) {

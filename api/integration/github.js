@@ -16,7 +16,7 @@
                 var qs = querystring.stringify({
                     client_id: '582b096f33b699321fb1',
                     redirect_uri: 'http://glw.local/api/integration/github/callback',
-                    scope: 'user:email,admin:repo_hook',
+                    scope: 'user:email,read:org,repo,admin:repo_hook',
                     state: req.body.uid
                 });
                 var url = 'https://github.com/login/oauth/authorize?' + qs;
