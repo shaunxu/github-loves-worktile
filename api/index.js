@@ -12,6 +12,10 @@
                 logger.info('API launched.');
             }
         });
+        var integration = {
+            github: require('./integration/github.js')(logger, model),
+            worktile: require('./integration/worktile.js')(logger, model)
+        };
 
         var _validate = function (controller, req, callback) {
             var validator = controller.validate;
@@ -58,7 +62,7 @@
             var controllerName = segments[2];
             var actionName = segments[3];
 
-            var controller = require('./' + moduleName + '/' + controllerName + '.js')(logger, model);
+            var controller = require('./' + moduleName + '/' + controllerName + '.js')(logger, model, integration);
             if (!controller) {
                 return _logAndSendErrorOrResult(moduleName, controllerName, null, null, 'Cannot find controller [' + moduleName + '.' + controllerName + '] from request path [' + req.path + ']', null, res);
             }

@@ -18,6 +18,16 @@
                 templateUrl: 'modules/security/signup.html',
                 controller: 'SignUpController'
             })
+            .state('connections', {
+                abstract: true,
+                url: '/connections',
+                templateUrl: 'modules/connection/connection.html'
+            })
+            .state('connections.list', {
+                url: '/all?highlight',
+                templateUrl: 'modules/connection/connection-list.html',
+                controller: 'ConnectionListController'
+            })
             //.state('signin.github', {
             //    url: '/github',
             //    templateUrl: 'modules/security/signin-github.html',

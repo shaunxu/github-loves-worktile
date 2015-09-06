@@ -3,8 +3,13 @@
 
     app.factory('$api', function ($http) {
         return {
-            request: function (moduleName, controllerName, actionName, params, callback) {
-                var self = this;
+            integrate: function (target, params, callback) {
+                this.requestRaw('integration', target, 'getAuthorizeUrl', params, callback);
+            },
+            request: function (controllerName, actionName, params, callback) {
+                this.requestRaw('domain', controllerName, actionName, params, callback);
+            },
+            requestRaw: function (moduleName, controllerName, actionName, params, callback) {
                 var opts = {
                     method: 'POST',
                     url: '/api/' + moduleName + '/' + controllerName + '/' + actionName,

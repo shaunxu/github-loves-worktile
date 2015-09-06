@@ -3,6 +3,7 @@
 
     var querystring = require('querystring');
     var request = require('request');
+    var _ = require('lodash');
     var _logger = null;
     var _model = null;
 
@@ -16,14 +17,18 @@
                     client_id: '582b096f33b699321fb1',
                     redirect_uri: 'http://glw.local/api/integration/github/callback',
                     scope: 'user:email,admin:repo_hook',
-                    state: ''
+                    state: req.body.uid
                 });
                 var url = 'https://github.com/login/oauth/authorize?' + qs;
                 return callback(null, url);
             },
+            getReviewUrl: function (req, res, callback) {
+                return callback(null, 'https://github.com/settings/connections/applications/582b096f33b699321fb1');
+            },
             callback: function (req, res, callback) {
                 var self = this;
                 var code = req.query.code;
+                var uid = req.query.state;
                 if (code) {
                     var options = {
                         url: 'https://github.com/login/oauth/access_token',
@@ -49,13 +54,18 @@
                                     return callback(error, null);
                                 }
                                 else {
-                                    var user = {
+                                    var connection = {
                                         token: token,
-                                        data: data
+                                        user: data
                                     };
-                                    // todo: add github account
-
-                                    return callback(null, user);
+                                    model.connection.set(uid, connection, function (error, reuslt) {
+                                        if (error) {
+                                            return callback(error, null);
+                                        }
+                                        else {
+                                            res.redirect('/connections/all?highlight=' + reuslt.id);
+                                        }
+                                    });
                                 }
                             });
                         }
@@ -64,6 +74,9 @@
                 else {
                     return callback('No [code] in query string.', null);
                 }
+            },
+            revoke: function (token, callback) {
+                this.request(token, '/582b096f33b699321fb1/tokens/' + token, 'DELETE', null, null, callback);
             },
             request: function (token, path, method, qs, data, callback) {
                 var options = {

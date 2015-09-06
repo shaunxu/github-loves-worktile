@@ -8,7 +8,7 @@
                 event.stopPropagation();
             }
 
-            $api.request('integration', 'worktile', 'getAuthorizeUrl', null, function (error, url) {
+            $api.integrate('worktile', null, function (error, url) {
                 if (error) {
                     alert(window.angular.toJson(error, true));
                 }
@@ -33,7 +33,7 @@
         if (!$scope.me) {
             var token = $cookies.get('__token');
             if (token) {
-                $api.request('security', 'users', 'getUserByToken', { token: token }, function (error, user) {
+                $api.request('users', 'getUserByToken', { token: token }, function (error, user) {
                     if (error) {
                         window.alert(window.angular.toJson(error, true));
                     }
@@ -41,7 +41,6 @@
                         $cookies.remove('__token');
                         $storage.set('me', user, false);
                         $scope.me = user;
-                        alert(angular.toJson($scope.me, true));
                     }
                 });
             }

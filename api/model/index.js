@@ -14,7 +14,8 @@
         });
 
         return {
-            user: require('./user')(mongoose, logger)
+            user: require('./user')(mongoose, logger),
+            connection: require('./connection')(mongoose, logger)
         };
     };
 
