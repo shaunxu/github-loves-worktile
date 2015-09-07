@@ -33,33 +33,10 @@
                         }
                         else {
                             if (connection) {
-                                integration.github.request(connection.token, '/user/orgs', 'GET', null, null, function (error, orgs) {
-                                    if (error) {
-                                        return callback(error, null);
-                                    }
-                                    else {
-                                        var tasks = [];
-                                        orgs.forEach(function (org) {
-                                            tasks.push(function (callback) {
-                                                integration.github.request(connection.token, '/orgs/' + org.login + '/repos', 'GET', null, null, function (error, repos) {
-                                                    return callback(error, repos);
-                                                });
-                                            });
-                                        });
-                                        tasks.push(function (callback) {
-                                            integration.github.request(connection.token, '/user/repos', 'GET', null, null, function (error, repos) {
-                                                return callback(error, repos);
-                                            });
-                                        });
-                                        async.parallel(tasks, function (error, results) {
-                                            if (error) {
-                                                return callback(error, null);
-                                            }
-                                            else {
-                                                return callback(error, _.flatten(results, true));
-                                            }
-                                        });
-                                    }
+                                integration.github.request(connection.token, '/user/repos', 'GET', null, null, function (error, repos) {
+                                    return callback(error, _.sortBy(repos, function (repo) {
+                                        return repo.full_name;
+                                    }));
                                 });
                             }
                             else {

@@ -4,6 +4,16 @@
     app.controller('wsSelectRepoController', function ($scope, $storage, $api) {
         var me = $storage.get('me');
         $scope.repos = [];
+        $scope.$context.data.repoId = null;
+
+        $scope.selectRepo = function (event, id) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            $scope.$context.data.repoId = id;
+        };
 
         $scope.refresh = function (callback) {
             $api.request('connections', 'getReposByConnectionID', {uid: me.id, cid: $scope.$context.data.connectionId}, function (error, repos) {

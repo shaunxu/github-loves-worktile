@@ -1,1 +1,40 @@
-<pre>{{repos | json}}</pre>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th></th> <!-- checkbox -->
+            <th></th> <!-- private icon -->
+            <th>Owner</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th> <!-- view in github link button -->
+            <th></th> <!-- homepage link button -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="repo in repos track by $index" style="cursor: pointer;">
+            <td style="text-align: center;" ng-click="selectRepo($event, repo.id)">
+                <div class="radio radio-primary">
+                    <label>
+                        <input type="radio" ng-model="$context.data.repoId" ng-value="repo.id">
+                    </label>
+                </div>
+            </td>
+            <td ng-click="selectRepo($event, repo.id)">
+                <i ng-class="repo.private ? 'fa fa-fw fa-lock' : 'fa fa-fw fa-unlock'"></i>
+            </td>
+            <td ng-click="selectRepo($event, repo.id)">{{repo.owner.login}}</td>
+            <td ng-click="selectRepo($event, repo.id)">{{repo.name}}</td>
+            <td ng-click="selectRepo($event, repo.id)">{{repo.description}}</td>
+            <td>
+                <a ng-href="{{repo.html_url}}" target="_blank" title="View in GitHub">
+                    <i class="fa fa-github fa-2x fa-fw"></i>
+                </a>
+            </td>
+            <td>
+                <a ng-if="repo.homepage" ng-href="{{repo.homepage}}" target="_blank" title="Homepage">
+                    <i class="fa fa-home fa-2x fa-fw"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
