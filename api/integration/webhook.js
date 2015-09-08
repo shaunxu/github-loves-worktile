@@ -4,7 +4,7 @@
     var _logger = null;
     var _model = null;
 
-    module.exports = function (logger, model) {
+    module.exports = function (logger, model, integration) {
         _logger = logger;
         _model = model;
 
