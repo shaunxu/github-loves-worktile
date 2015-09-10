@@ -15,6 +15,7 @@
         var self = this;
         var prop = _.assign({}, {
             name: uuid.v4(),
+            displayName: 'Untitled',
             convert: function (payload, callback) {
                 return callback(null, payload.toString());
             },

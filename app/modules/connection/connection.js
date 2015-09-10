@@ -4,7 +4,7 @@
     app.controller('ConnectionListController', function ($scope, $window, $state, $api, $storage) {
         var me = $storage.get('me');
         $scope.highlightId = $state.params.highlight;
-        $api.requestRaw('integration', 'github', 'getReviewUrl', null, function (error, url) {
+        $api.requestRaw('inbox', 'github', 'reviewUrl', null, function (error, url) {
             $scope.reviewUrl = url;
         });
 
@@ -14,7 +14,7 @@
                 event.stopPropagation();
             }
 
-            $api.integrate('github', { uid: me.id }, function (error, url) {
+            $api.requestRaw('inbox', 'github', 'authorizeUrl', { uid: me.id }, function (error, url) {
                 if (error) {
                     alert(window.angular.toJson(error, true));
                 }
@@ -30,14 +30,14 @@
                 event.stopPropagation();
             }
 
-            $api.request('connections', 'revoke', { uid: me.id, id: id }, function (error) {
-                if (error) {
-                    alert(window.angular.toJson(error, true));
-                }
-                else {
-                    $state.reload('connections.list');
-                }
-            });
+            //$api.request('connections', 'revoke', { uid: me.id, id: id }, function (error) {
+            //    if (error) {
+            //        alert(window.angular.toJson(error, true));
+            //    }
+            //    else {
+            //        $state.reload('connections.list');
+            //    }
+            //});
         };
 
         $api.request('connections', 'getConnectionsByUserID', { uid: me.id }, function (error, connections) {

@@ -19,6 +19,7 @@
         var self = this;
         var tpl = _.assign({}, {
             name: uuid.v4(),
+            displayName: 'Untitled',
             safeString: false
         }, template);
         self._templates[tpl.name] = tpl;
