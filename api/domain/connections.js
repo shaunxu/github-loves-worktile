@@ -6,7 +6,7 @@
     var _logger = null;
     var _model = null;
 
-    module.exports = function (logger, model, connector) {
+    module.exports = function (logger, model, utilities) {
         _logger = logger;
         _model = model;
 
@@ -39,18 +39,13 @@
                             return callback(error, null);
                         }
                         else {
-                            if (connector) {
-                                connector.github.request(logger, connection.token, {
-                                    path: '/user/repos'
-                                }, function (error, repos) {
-                                    return callback(error, _.sortBy(repos, function (repo) {
-                                        return repo.full_name;
-                                    }));
-                                });
-                            }
-                            else {
-                                return callback(null, []);
-                            }
+                            utilities.connector.github.request(logger, connection.token, {
+                                path: '/user/repos'
+                            }, function (error, repos) {
+                                return callback(error, _.sortBy(repos, function (repo) {
+                                    return repo.full_name;
+                                }));
+                            });
                         }
                     });
                 }

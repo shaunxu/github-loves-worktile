@@ -5,10 +5,11 @@
     var async = require('async');
     var _ = require('lodash');
 
-    var Event = function (logger, name, displayName, properties) {
+    var Event = function (logger, name, displayName, description, properties) {
         this._logger = logger;
         this._name = name;
         this._displayName = displayName;
+        this._description = description;
         this._properties = properties || {};
     };
 
@@ -31,6 +32,7 @@
         return {
             name: this._name,
             displayName: this._displayName,
+            description: this._description,
             properties: _.map(this._properties, function (prop) {
                 return {
                     name: prop.name,

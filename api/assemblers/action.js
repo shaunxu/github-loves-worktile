@@ -6,9 +6,10 @@
     var Handlebars = require('Handlebars');
     var _ = require('lodash');
 
-    var Action = function (logger, name, templates, worktile, token) {
+    var Action = function (logger, name, displayName, templates, worktile, token) {
         this._logger = logger;
         this._name = name;
+        this._displayName = displayName;
         this._templates = templates || {};
         this._worktile = function (path, method, qs, data, callback) {
             worktile.request(token, path, method, qs, data, callback);
@@ -26,8 +27,18 @@
         return self;
     };
 
-    Action.prototype.getTemplates = function () {
-        return this._templates;
+    Action.prototype.getMetadata = function () {
+        return {
+            name: this._name,
+            displayName: this._displayName,
+            templates: _.map(this._templates, function (template) {
+                return {
+                    name: template.name,
+                    displayName: template.displayName,
+                    safeString: template.safeString
+                };
+            })
+        }
     };
 
     Action.prototype.execute = function (pid, templates, props, callback) {

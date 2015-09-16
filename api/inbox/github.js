@@ -3,17 +3,17 @@
 
     var request = require('request');
 
-    module.exports = function (logger, model, connector) {
+    module.exports = function (logger, model, utilities) {
         return {
             authorizeUrl: function (req, res, callback) {
-                return callback(null, connector.github.utilities.authorizeUrl({
+                return callback(null, utilities.connector.github.utilities.authorizeUrl({
                     redirect_uri: 'http://glw.local/api/inbox/github/callback',
                     scope: 'user:email,read:org,repo,admin:repo_hook',
                     state: req.body.uid
                 }));
             },
             reviewUrl: function (req, res, callback) {
-                return callback(null, connector.github.utilities.reviewUrl());
+                return callback(null, utilities.connector.github.utilities.reviewUrl());
             },
             callback: function (req, res, callback) {
                 var code = req.query.code;
@@ -23,12 +23,12 @@
                         url: 'https://github.com/login/oauth/access_token',
                         method: 'POST',
                         headers: {
-                            'User-Agent': connector.github.utilities.userAgent,
+                            'User-Agent': utilities.connector.github.utilities.userAgent,
                             'Accept': 'application/json'
                         },
                         qs: {
-                            client_id: connector.github.utilities.clientId,
-                            client_secret: connector.github.utilities.clientSecret,
+                            client_id: utilities.connector.github.utilities.clientId,
+                            client_secret: utilities.connector.github.utilities.clientSecret,
                             code: code
                         }
                     };

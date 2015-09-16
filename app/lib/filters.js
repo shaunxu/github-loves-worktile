@@ -17,4 +17,10 @@
             }
         };
     });
+
+    app.filter('placeholder', function () {
+        return function (input) {
+            return '{{' + input + '}}';
+        };
+    });
 })(window.app);

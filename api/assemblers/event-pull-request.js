@@ -6,42 +6,39 @@
 
     var Event = require('./event.js');
 
-    var EventIssueOpened = function (logger) {
-        Event.call(this, logger, 'issue-opened', 'Issue Created', null);
+    var EventPullRequest = function (logger) {
+        Event.call(this, logger, 'pull-request', 'Pull Request', 'Pull request was created.', null);
 
         this.addProperty({
             name: 'id',
             displayName: 'ID',
             convert: function (payload, callback) {
-                return callback(null, payload.issue.id);
+                return callback(null, payload.pull_request.id);
             }
         }).addProperty({
             name: 'url',
             displayName: 'URL',
             convert: function (payload, callback) {
-                return callback(null, payload.issue.html_url);
+                return callback(null, payload.pull_request.html_url);
+            }
+        }).addProperty({
+            name: 'diff_url',
+            displayName: 'Diff URL',
+            convert: function (payload, callback) {
+                return callback(null, payload.pull_request.diff_url);
             }
         }).addProperty({
             name: 'title',
             displayName: 'Title',
             convert: function (payload, callback) {
-                return callback(null, payload.issue.title);
+                return callback(null, payload.pull_request.title);
             }
         }).addProperty({
             name: 'body',
             displayName: 'Content',
             convert: function (payload, callback) {
-                return callback(null, payload.issue.body);
+                return callback(null, payload.pull_request.body);
             }
-        }).addProperty({
-            name: 'labels',
-            displayName: 'Labels',
-            convert: function (payload, callback) {
-                return callback(null, _.map(payload.issue.labels, function (label) {
-                    return label.name;
-                }).join(', '));
-            },
-            required: false
         }).addProperty({
             name: 'repository_name',
             displayName: 'Repository',
@@ -69,10 +66,10 @@
         });
     };
 
-    EventIssueOpened.prototype.evaluate = function (pid, payload, callback) {
+    EventPullRequest.prototype.evaluate = function (pid, payload, callback) {
         return callback(payload.action === 'opened');
     };
 
-    util.inherits(EventIssueOpened, Event);
-    module.exports = EventIssueOpened;
+    util.inherits(EventPullRequest, Event);
+    module.exports = EventPullRequest;
 })();

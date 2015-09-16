@@ -2,37 +2,47 @@
     'use strict';
 
     var fs = require('fs');
-    var async = require('async');
     var _ = require('lodash');
 
+    var _getMetadata = function (type) {
+        var result = {};
+        fs.readdirSync('./api/assemblers').forEach(function (file) {
+            var path = './api/assemblers/' + file;
+            if (fs.statSync(path).isFile() && _.startsWith(file, type + '-') && _.endsWith(file, '.js')) {
+                var instance = new (require('./' + file))(null);
+                var metadata = instance.getMetadata();
+                metadata.path = path;
+                metadata.file = file;
+                result[metadata.name] = metadata;
+            }
+        });
+        return result;
+    };
+
     module.exports = function (logger) {
-        var loader = function (prefixing) {
-            return function (error, callback) {
-                fs.readdir('./', function (error, files) {
-                    if (error) {
-                        return callback(error, null);
-                    }
-                    else {
-                        var items = {};
-                        files.forEach(function (file) {
-                            if (_.startsWith(file, prefixing + '-') && _.endsWith('.js')) {
-                                items[file.substr(0, '.js'.length)] = new (require('./' + file))(logger);
-                            }
-                        });
-                        return callback(null, items);
-                    }
-                });
-            };
+        var types = {
+            event: 'event',
+            action: 'action'
         };
 
-        async.parallel({
-            actions: loader('action'),
-            events: loader('event')
-        }, function (error, result) {
-            if (error) {
-                logger.error(error);
-            }
+        var metadata = (function () {
+            var result = {};
+            result[types.event] = _getMetadata(types.event);
+            result[types.action] = _getMetadata(types.action);
             return result;
-        });
+        })();
+
+        logger.debug('Assemblers Metadata:', metadata);
+
+        return {
+            types: types,
+            metadata: metadata,
+            Activator: function (type, name) {
+                var path = (_metadata[type] && _metadata[type][name] && _metadata[type][name].path) ?
+                    _metadata[type][name].path :
+                    './' + type + '-' + name + '.js';
+                return require(path)(logger);
+            }
+        };
     };
 })();

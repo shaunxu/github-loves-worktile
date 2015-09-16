@@ -3,10 +3,10 @@
 
     var request = require('request');
 
-    module.exports = function (logger, model, connector) {
+    module.exports = function (logger, model, utilities) {
         return {
             authorizeUrl: function (req, res, callback) {
-                return callback(null, connector.worktile.utilities.authorizeUrl({
+                return callback(null, utilities.connector.worktile.utilities.authorizeUrl({
                     redirect_uri: 'http://glw.local/api/inbox/worktile/callback',
                     state: req.body.uid
                 }));
@@ -22,8 +22,8 @@
                         },
                         json: true,
                         body: {
-                            client_id: connector.worktile.utilities.clientId,
-                            client_secret: connector.worktile.utilities.clientSecret,
+                            client_id: utilities.connector.worktile.utilities.clientId,
+                            client_secret: utilities.connector.worktile.utilities.clientSecret,
                             code: code
                         }
                     };
@@ -32,7 +32,7 @@
                             return callback(error, null);
                         }
                         else {
-                            connector.worktile.request(logger, body.access_token, {
+                            utilities.connector.worktile.request(logger, body.access_token, {
                                 path: '/user/profile',
                                 method: 'GET'
                             }, function (error, data) {

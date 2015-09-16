@@ -7,7 +7,7 @@
     var Action = require('./action.js');
 
     var ActionCreateTask = function (logger, worktile, token) {
-        Action.call(this, logger, 'create-task', null, worktile, token);
+        Action.call(this, logger, 'create-task', 'Create Task', null, worktile, token);
 
         this.addTemplate({
             name: 'name',
