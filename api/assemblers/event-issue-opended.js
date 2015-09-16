@@ -7,7 +7,7 @@
     var Event = require('./event.js');
 
     var EventIssueOpened = function (logger) {
-        Event.call(this, logger, 'issue-opened', null);
+        Event.call(this, logger, 'issue-opened', 'Issue Created', null);
 
         this.addProperty({
             name: 'id',

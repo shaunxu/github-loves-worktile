@@ -5,9 +5,10 @@
     var async = require('async');
     var _ = require('lodash');
 
-    var Event = function (logger, name, properties) {
+    var Event = function (logger, name, displayName, properties) {
         this._logger = logger;
         this._name = name;
+        this._displayName = displayName;
         this._properties = properties || {};
     };
 
@@ -26,8 +27,19 @@
         return self;
     };
 
-    Event.prototype.getProperties = function () {
-        return this._properties;
+    Event.prototype.getMetadata = function () {
+        return {
+            name: this._name,
+            displayName: this._displayName,
+            properties: _.map(this._properties, function (prop) {
+                return {
+                    name: prop.name,
+                    displayName: prop.displayName,
+                    required: prop.required,
+                    defaultValue: prop.defaultValue
+                };
+            })
+        }
     };
 
     Event.prototype.evaluate = function (pid, payload, callback) {
