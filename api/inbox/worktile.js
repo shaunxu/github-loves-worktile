@@ -6,15 +6,13 @@
     module.exports = function (logger, model, connector) {
         return {
             authorizeUrl: function (req, res, callback) {
-                return callback(null, connector.worktile.authorizeUrl({
-                    redirect_uri: 'http://glw.local/api/inbox/github/callback',
-                    scope: 'user:email,read:org,repo,admin:repo_hook',
+                return callback(null, connector.worktile.utilities.authorizeUrl({
+                    redirect_uri: 'http://glw.local/api/inbox/worktile/callback',
                     state: req.body.uid
                 }));
             },
             callback: function (req, res, callback) {
                 var code = req.query.code;
-                var uid = req.query.state;
                 if (code) {
                     var options = {
                         url: 'https://api.worktile.com/oauth2/access_token',
@@ -22,9 +20,10 @@
                         headers: {
                             'Accept': 'application/json'
                         },
-                        qs: {
-                            client_id: connector.worktile.clientId,
-                            client_secret: connector.worktile.clientSecret,
+                        json: true,
+                        body: {
+                            client_id: connector.worktile.utilities.clientId,
+                            client_secret: connector.worktile.utilities.clientSecret,
                             code: code
                         }
                     };
@@ -50,8 +49,7 @@
                                             return callback(error, null);
                                         }
                                         else {
-                                            res.cookie('__token', result.token);
-                                            res.redirect('/');
+                                            res.redirect('/complete?seed=' + result.uid);
                                         }
                                     });
                                 }

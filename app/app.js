@@ -13,11 +13,11 @@
         $urlRouterProvider.otherwise('/about');
 
         $stateProvider
-            //.state('signin', {
-            //    url: '/signin',
-            //    templateUrl: 'modules/security/signin.html',
-            //    controller: 'SignInController'
-            //})
+            .state('complete', {
+                url: '/complete?seed',
+                templateUrl: 'modules/security/complete.html',
+                controller: 'CompleteController'
+            })
             .state('signup', {
                 url: '/signup',
                 templateUrl: 'modules/security/signup.html',

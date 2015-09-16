@@ -6,14 +6,14 @@
     module.exports = function (logger, model, connector) {
         return {
             authorizeUrl: function (req, res, callback) {
-                return callback(null, connector.github.authorizeUrl({
+                return callback(null, connector.github.utilities.authorizeUrl({
                     redirect_uri: 'http://glw.local/api/inbox/github/callback',
                     scope: 'user:email,read:org,repo,admin:repo_hook',
                     state: req.body.uid
                 }));
             },
             reviewUrl: function (req, res, callback) {
-                return callback(null, connector.github.reviewUrl());
+                return callback(null, connector.github.utilities.reviewUrl());
             },
             callback: function (req, res, callback) {
                 var code = req.query.code;
@@ -23,12 +23,12 @@
                         url: 'https://github.com/login/oauth/access_token',
                         method: 'POST',
                         headers: {
-                            'User-Agent': connector.github.userAgent,
+                            'User-Agent': connector.github.utilities.userAgent,
                             'Accept': 'application/json'
                         },
                         qs: {
-                            client_id: connector.github.clientId,
-                            client_secret: connector.github.clientSecret,
+                            client_id: connector.github.utilities.clientId,
+                            client_secret: connector.github.utilities.clientSecret,
                             code: code
                         }
                     };
@@ -37,7 +37,8 @@
                             return callback(error, null);
                         }
                         else {
-                            connector.github.request(logger, JSON.parse(body), {
+                            var token = JSON.parse(body);
+                            connector.github.request(logger, token.access_token, {
                                 path: '/user',
                                 method: 'GET'
                             }, function (error, data) {

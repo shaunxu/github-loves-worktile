@@ -38,12 +38,12 @@
             };
             if (error) {
                 message.error = error;
-                logger.error(message);
+                logger.error('API Response:', JSON.stringify(message, null, 2));
                 res.status(500).send(message);
             }
             else {
                 message.result = result;
-                logger.debug(message);
+                logger.debug('API Response:', JSON.stringify(message, null, 2));
                 res.json(result);
             }
         };

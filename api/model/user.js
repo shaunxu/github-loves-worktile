@@ -8,7 +8,7 @@
             token: { type: String },
             token_expired_on: { type: String },
             token_refresh: { type: String },
-            id: { type: String },
+            uid: { type: String },
             login: { type: String },
             display_name: { type: String },
             email: { type: String },
@@ -42,7 +42,7 @@
 
         return {
             signin: function (user, callback) {
-                UserModel.findOne({ id: user.data.uid }, function (error, model) {
+                UserModel.findOne({ uid: user.data.uid }, function (error, model) {
                     if (error) {
                         return callback(error, null);
                     }
@@ -53,7 +53,7 @@
                         model.token = user.token.access_token;
                         model.token_expired_on = Date.now() + user.token.expires_in * 1000;
                         model.token_refresh = user.token.refresh_token;
-                        model.id = user.data.uid;
+                        model.uid = user.data.uid;
                         model.login = user.data.name;
                         model.display_name = user.data.display_name;
                         model.email = user.data.email;
@@ -70,8 +70,8 @@
                     }
                 });
             },
-            get: function (token, callback) {
-                UserModel.findOne({ token: token }, function (error, model) {
+            getById: function (uid, callback) {
+                UserModel.findOne({ uid: uid }, function (error, model) {
                     return callback(error, model);
                 });
             }

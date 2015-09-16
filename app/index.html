@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <base href="/">
 
-    <title>Github &hearts;s Worktile</title>
+    <title>GitHub &hearts;s Worktile</title>
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="javascript:void(0)">Github <i class="fa fa-heart"></i>s Worktile</a>
+            <a class="navbar-brand" href="javascript:void(0)">GitHub <i class="fa fa-heart"></i>s Worktile</a>
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul ng-show="true" class="nav navbar-nav">
@@ -40,7 +40,7 @@
                         <img class="avatar" ng-src="{{me.avatar}}" title="{{me.display_name}}">
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="profile">Edit Profile</a></li>
+                        <li><a ui-sref="preferences">Preferences</a></li>
                         <li><a href="javascript:void(0)" ng-click="signout($event)">Sign Out</a></li>
                     </ul>
                 </li>
@@ -72,6 +72,7 @@
     <script type="text/javascript" src="lib/storage.js"></script>
     <script type="text/javascript" src="lib/filters.js"></script>
     <script type="text/javascript" src="modules/security/signin.js"></script>
+    <script type="text/javascript" src="modules/security/complete.js"></script>
     <script type="text/javascript" src="modules/security/signup.js"></script>
     <script type="text/javascript" src="modules/misc/about.js"></script>
     <script type="text/javascript" src="modules/connection/connection.js"></script>

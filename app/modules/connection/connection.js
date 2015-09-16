@@ -14,7 +14,7 @@
                 event.stopPropagation();
             }
 
-            $api.requestRaw('inbox', 'github', 'authorizeUrl', { uid: me.id }, function (error, url) {
+            $api.requestRaw('inbox', 'github', 'authorizeUrl', { uid: me.uid }, function (error, url) {
                 if (error) {
                     alert(window.angular.toJson(error, true));
                 }
@@ -40,7 +40,7 @@
             //});
         };
 
-        $api.request('connections', 'getConnectionsByUserID', { uid: me.id }, function (error, connections) {
+        $api.request('connections', 'getConnectionsByUserID', { uid: me.uid }, function (error, connections) {
             if (error) {
                 alert(window.angular.toJson(error, true));
             }

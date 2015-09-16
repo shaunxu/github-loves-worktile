@@ -16,7 +16,7 @@
         };
 
         $scope.refresh = function (callback) {
-            $api.request('connections', 'getReposByConnectionID', {uid: me.id, cid: $scope.$context.data.connectionId}, function (error, repos) {
+            $api.request('connections', 'getReposByConnectionID', {uid: me.uid, cid: $scope.$context.data.connectionId}, function (error, repos) {
                 return callback(error, repos);
             });
         };

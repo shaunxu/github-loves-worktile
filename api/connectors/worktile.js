@@ -72,7 +72,6 @@
         authorizeUrl: function (options) {
             options = _.assign({}, {
                 redirect_uri: '',
-                scope: '',
                 state: '',
                 display: 'web'
             }, options);

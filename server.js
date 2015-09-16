@@ -2,10 +2,9 @@
     'use strict';
 
     var path = require('path');
-    var argv = require('optimist').usage('Usage: $0 [--port] [--debug] [--proxy]')
+    var argv = require('optimist').usage('Usage: $0 [--port] [--debug]')
         .default('port', process.env.port || 80)
         .default('debug', true)
-        .default('proxy', null)
         .argv;
 
     var log4js = require('log4js');
@@ -17,18 +16,14 @@
         logger.setLevel('INFO');
     }
 
-    logger.debug('config - port: ' + argv.port);
-    logger.debug('config - debug: ' + argv.debug);
-    logger.debug('config - proxy: ' + argv.proxy);
-
-    if (argv.proxy) {
-        var array = argv.proxy.split(':');
-        if (array.length === 2) {
-            var host = array[0];
-            var port = array[1];
-            require('./request-proxy.js')(host, port, logger);
+    logger.debug('Configuration:', JSON.stringify({
+        port: argv.port,
+        debug: argv.debug,
+        proxy: {
+            http: process.env.HTTP_PROXY,
+            https: process.env.HTTPS_PROXY
         }
-    }
+    }, null, 2));
 
     var express = require('express');
     var app = express();

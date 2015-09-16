@@ -1,13 +1,12 @@
 (function () {
     'use strict';
 
-    var async = require('async');
     var _ = require('lodash');
 
     var _logger = null;
     var _model = null;
 
-    module.exports = function (logger, model, integration) {
+    module.exports = function (logger, model, connector) {
         _logger = logger;
         _model = model;
 
@@ -16,7 +15,15 @@
                 var uid = req.body.uid;
                 if (uid) {
                     model.connection.getAllByUserId(uid, function (error, connections) {
-                        return callback(error, connections);
+                        return callback(error, _.map(connections, function (conn) {
+                            return {
+                                avatar: conn.avatar,
+                                email: conn.email,
+                                id: conn.id,
+                                display_name: conn.display_name,
+                                token_scope: conn.token_scope
+                            };
+                        }));
                     });
                 }
                 else {
@@ -32,8 +39,10 @@
                             return callback(error, null);
                         }
                         else {
-                            if (connection) {
-                                integration.github.request(connection.token, '/user/repos', 'GET', null, null, function (error, repos) {
+                            if (connector) {
+                                connector.github.request(logger, connection.token, {
+                                    path: '/user/repos'
+                                }, function (error, repos) {
                                     return callback(error, _.sortBy(repos, function (repo) {
                                         return repo.full_name;
                                     }));

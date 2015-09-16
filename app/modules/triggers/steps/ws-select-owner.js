@@ -7,7 +7,7 @@
         $scope.$context.data.connectionId = null;
 
         $scope.refresh = function (callback) {
-            $api.request('connections', 'getConnectionsByUserID', {uid: me.id}, function (error, connections) {
+            $api.request('connections', 'getConnectionsByUserID', { uid: me.uid }, function (error, connections) {
                 return callback(error, connections);
             });
         };
