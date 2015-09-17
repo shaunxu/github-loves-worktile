@@ -38,10 +38,10 @@
             types: types,
             metadata: metadata,
             Activator: function (type, name) {
-                var path = (_metadata[type] && _metadata[type][name] && _metadata[type][name].path) ?
-                    _metadata[type][name].path :
+                var file = (metadata[type] && metadata[type][name] && metadata[type][name].file) ?
+                    metadata[type][name].file :
                     './' + type + '-' + name + '.js';
-                return require(path)(logger);
+                return require('./' + file)(logger);
             }
         };
     };
