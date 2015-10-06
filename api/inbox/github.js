@@ -38,7 +38,7 @@
                         }
                         else {
                             var token = JSON.parse(body);
-                            connector.github.request(logger, token.access_token, {
+                            utilities.connector.github.request(logger, token.access_token, {
                                 path: '/user',
                                 method: 'GET'
                             }, function (error, data) {

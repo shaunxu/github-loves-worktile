@@ -6,8 +6,8 @@
 
     var _getMetadata = function (type) {
         var result = {};
-        fs.readdirSync('./api/assemblers').forEach(function (file) {
-            var path = './api/assemblers/' + file;
+        fs.readdirSync('../api/assemblers').forEach(function (file) {
+            var path = '../api/assemblers/' + file;
             if (fs.statSync(path).isFile() && _.startsWith(file, type + '-') && _.endsWith(file, '.js')) {
                 var instance = new (require('./' + file))(null);
                 var metadata = instance.getMetadata();
